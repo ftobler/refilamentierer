@@ -71,7 +71,7 @@ void setup() {
     Serial.begin(9600);
 }
 
-#define preset_line_speed 1182 //1182
+#define preset_line_speed 1207 //1182
 
 void loop() {
 
