@@ -8,7 +8,10 @@
 // Control sample period
 #define DT_MS 100
 
-#define TARGET_TEMP 185
+
+//PLA 180°C
+//PET 185°C
+#define TARGET_TEMP 180
 
 void setup() {
     // put your setup code here, to run once:
