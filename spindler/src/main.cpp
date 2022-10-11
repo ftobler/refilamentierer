@@ -21,11 +21,18 @@ void setup() {
 
 boolean direction = false;
 
-#define ON_TIME 10
+#define ON_TIME 5
 
 void loop() {
-    
-    delay(60000);
+    for (int i = 0; i < 16; i++) {
+        delay(1000);
+        if (digitalRead(SWLEFT) == 0) {
+            break;
+        }
+        if (digitalRead(SWRIGHT) == 0) {
+            break;
+        }
+    }
     
     if (digitalRead(SWLEFT) == 0) {
         direction = true;
