@@ -33,9 +33,13 @@ float measure_accurate();
 float zero = 0;
 
 
+//uart communication
 #define MAX_BUFFER 50
 char buffer[MAX_BUFFER];
 int bufferpos = 0;
+
+
+#define preset_line_speed 1300 //1207 //1182
 
 void setup() {
     // put your setup code here, to run once:
@@ -71,7 +75,6 @@ void setup() {
     Serial.begin(9600);
 }
 
-#define preset_line_speed 1300 //1207 //1182
 
 void loop() {
 
