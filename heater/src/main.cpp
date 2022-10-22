@@ -11,7 +11,29 @@
 
 //PLA 180°C
 //PET 185°C
-#define TARGET_TEMP 180
+//#define TARGET_TEMP 180
+int TARGET_TEMP = 185;
+
+//uart commands
+#define MAX_BUFFER 50
+char buffer[MAX_BUFFER];
+int bufferpos = 0;
+
+
+// PI Control parameters
+#define P 0.0125f
+#define I 0.0004f //0.0025f
+
+
+//thermistor configuration
+#define T0 (25.0f + 273.15f)
+#define RT0 10000.0f   // Ω
+#define B 3977.0f      // K
+#define VCC 5.0f    //Supply voltage
+#define R 10000.0f  //R=10KΩ
+
+
+
 
 void setup() {
     // put your setup code here, to run once:
@@ -27,12 +49,6 @@ void setup() {
 
     analogWrite(PWMOUT, 0);
 }
-
-#define T0 (25.0f + 273.15f)
-#define RT0 10000.0f   // Ω
-#define B 3977.0f      // K
-#define VCC 5.0f    //Supply voltage
-#define R 10000.0f  //R=10KΩ
 
 
 float analogReadMulti(int adc, unsigned long ms) {
@@ -75,9 +91,6 @@ float getTemp(void) {
     return filtered;
 }
 
-// PI Control parameters
-#define P 0.0125f
-#define I 0.0004f //0.0025f
 
 void loop() {
 
@@ -106,4 +119,28 @@ void loop() {
     digitalWrite(LED, abs(x) < 3); //light up led if target reached
 
     //delay(DT_MS);
+
+    while (Serial.available()) {
+        char c = Serial.read();
+        if (c == '\r' || c == '\n') {
+            buffer[bufferpos] = 0;
+            if (bufferpos <= 1) {
+                break;
+            }
+            bufferpos = 0;
+            int val = 0;
+            if (sscanf(&buffer[1], "%d", &val)) {
+                if (buffer[0] == 't') {
+                    Serial.print("new speed:"); 
+                    Serial.println(val);
+                    TARGET_TEMP = val;
+                }
+            }
+        } else {
+            buffer[bufferpos++] = c;
+        }
+        if (bufferpos > MAX_BUFFER) {
+            bufferpos = 0;
+        }
+    }
 }
