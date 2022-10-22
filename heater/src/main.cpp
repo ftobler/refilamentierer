@@ -131,7 +131,7 @@ void loop() {
             int val = 0;
             if (sscanf(&buffer[1], "%d", &val)) {
                 if (buffer[0] == 't') {
-                    Serial.print("new speed:"); 
+                    Serial.print("new temperature:"); 
                     Serial.println(val);
                     TARGET_TEMP = val;
                 }
