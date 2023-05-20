@@ -24,8 +24,8 @@ boolean direction = false;
 #define ON_TIME 5
 
 void loop() {
-    for (int i = 0; i < 16; i++) {
-        delay(1000);
+    for (int i = 0; i < 106; i++) {
+        delay(100);
         if (digitalRead(SWLEFT) == 0) {
             break;
         }

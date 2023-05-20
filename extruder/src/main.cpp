@@ -56,13 +56,13 @@ void setup() {
 
 void loop() {
 
-    static int speed = 200;
+    static int speed = 250;
     int old_speed = speed;
 
     if (digitalRead(BUTTON1)==0) speed = 0;
     if (digitalRead(BUTTON2)==0) speed = 100;
     if (digitalRead(BUTTON3)==0) speed = 200;
-    if (digitalRead(BUTTON4)==0) speed = 300;
+    if (digitalRead(BUTTON4)==0) speed = 250;
 
     if (old_speed != speed) {
         Timer1.setPeriod(1000000 / speed / 2);
@@ -72,7 +72,7 @@ void loop() {
     digitalWrite(LED4, speed==0);
     digitalWrite(LED3, speed==100);
     digitalWrite(LED2, speed==200);
-    digitalWrite(LED1, speed==300);
+    digitalWrite(LED1, speed==250);
 
     delay(50);
 }

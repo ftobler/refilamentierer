@@ -38,8 +38,16 @@ float zero = 0;
 char buffer[MAX_BUFFER];
 int bufferpos = 0;
 
+//for speed of 200 on pusher
+//#define preset_line_speed 1300 //1207 //1182
 
-#define preset_line_speed 1300 //1207 //1182
+//for speed of 300 on pusher
+#define preset_line_speed 1525 //1207 //1182
+//use 1525 for abs/petg, because it "squishes" differently. PETG at 200°C
+//use 1615 for pla, 185°C
+
+//for speed of 300 on pusher
+//#define preset_line_speed 1940 //1207 //1182
 
 void setup() {
     // put your setup code here, to run once:
@@ -103,7 +111,7 @@ void loop() {
     if (digitalRead(BUTTON4)==0) speed = preset_line_speed;
 
     if (speed >  2000) speed = 2000;
-    if (speed <  1000) speed = 1000;
+    if (speed <  500) speed = 500;
 
 
     Timer1.setPeriod(1000000.0f / speed);
