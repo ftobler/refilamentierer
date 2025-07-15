@@ -1,5 +1,7 @@
 # refilamentierer
 
+[![PlatformIO Build](https://github.com/ftobler/refilamentierer/actions/workflows/build.yml/badge.svg)](https://github.com/ftobler/refilamentierer/actions/workflows/build.yml)
+
 A device that converts 3mm filament to 1.75mm filament.
 
 CAD Onshape:
