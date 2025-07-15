@@ -1,0 +1,42 @@
+name: PlatformIO Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+
+    - name: Install PlatformIO
+      run: pip install platformio
+
+    - name: Build Extruder
+      run: |-
+        cd ./extruder
+        platformio run --target clean
+        platformio run
+
+    - name: Build Heater
+      run: |-
+        cd ./heater
+        platformio run --target clean
+        platformio run
+
+    - name: Build Puller
+      run: |-
+        cd ./puller
+        platformio run --target clean
+        platformio run
+
+    - name: Build Spindler
+      run: |-
+        cd ./spindler
+        platformio run --target clean
+        platformio run
